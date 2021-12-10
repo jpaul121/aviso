@@ -1,0 +1,18 @@
+dist: xenial
+language: python
+python:
+  - "3.9"
+  - "3.10"
+install:
+  - sudo apt update
+  - sudo add-apt-repository ppa:deadsnakes/ppa
+  - sudo apt update
+  - sudo apt install python3.9
+  - pip install pipenv
+  - pipenv install --dev
+script:
+  - pipenv shell
+  - echo -n $PWD > aviso.pth && 
+      echo -n $(python -m site --user-site) | 
+      xargs -0 -I venv_path mv aviso.pth venv_path
+  - python ./aviso/main.py
