@@ -4,8 +4,6 @@ import time
 
 import praw
 
-import aviso
-
 from prawcore.exceptions import PrawcoreException as APIException
 from twilio.rest import Client
 
@@ -32,6 +30,7 @@ if __name__ == '__main__':
 
       logger.info('Instantiated Twilio client...')
       logger.info('Initialization successful. Listening for new posts...')
+      print()
 
       subreddit = reddit.subreddit(subreddits)
       for post in subreddit.stream.submissions(skip_existing=True):
@@ -50,4 +49,4 @@ if __name__ == '__main__':
 
     except APIException as e:
       logger.exception(f'PRAW exception received: {str(vars(e))}')
-      time.sleep(16)
+      time.sleep(praw_config['DEFAULT']['timeout'])

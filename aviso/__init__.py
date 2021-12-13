@@ -18,7 +18,7 @@ SUBREDDIT_FILE = 'subs.json'
 
 
 def get_env(env_key):
-  """ Get environment variables, or throw an error. """
+  """ Get environment variable, or throw an error. """
   
   load_dotenv(
     os.path.join(os.path.dirname(__file__), '.env'),
@@ -61,7 +61,7 @@ assert os.path.isfile(ENV_FILE)
 assert os.path.isfile(PRAW_CONFIG_FILE)
 assert os.path.isfile(SUBREDDIT_FILE)
 
-logging_config('logging_config.ini')
+logging_config(LOGGING_CONFIG_FILE)
 logger = logging.getLogger(__name__)
 
 logger.info('Started bot...')
